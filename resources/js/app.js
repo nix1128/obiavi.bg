@@ -1,19 +1,41 @@
-import router from './routes';
-import  VueRouter from "vue-router"
-import Vue from 'vue';
+import router from "./routes";
+import VueRouter from "vue-router";
+import Vue from "vue";
+import Index from "./components/index.vue";
 
+// require("./bootstrap");
 
-require('./bootstrap');
-
-window.Vue = require('vue').default;
-
-
-
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
+window.Vue = require("vue").default;
 Vue.use(VueRouter);
 
 const app = new Vue({
-    el: '#app',
+    el: "#app",
     router,
+    components: {
+        index: Index
+    },
+
+    // beforeCreate() {
+    //     console.log("before create");
+    // },
+
+    // created() {
+    //     console.log("created");
+    // },
+
+    // beforeMount() {
+    //     console.log("before Mount");
+    // },
+
+    // mounted() {
+    //     console.log("Mounted");
+    // },
+
+    // beforeDestroy() {
+    //     console.log("before destroy");
+    // },
+
+    // destroyed() {
+    //     console.log("destroyed");
+    // }
 });

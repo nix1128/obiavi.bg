@@ -9,7 +9,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-
+<link rel="stylesheet" href="{{ asset('css/app.css')}}">
          <script src="{{ asset('js/app.js')}}" defer></script>
         <!-- Styles -->
         <style>
@@ -20,11 +20,12 @@
     </head>
     <body class="antialiased">
     <div id="app">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+
+        {{-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0"> --}}
 
 
-          <h1> <router-view/></h1>
+          <index/>
 
-     </div>
+     {{-- </div> --}}
      <div>
 </html>
