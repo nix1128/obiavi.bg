@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Ads;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,11 +18,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/ads', function (Request $request) {
-    return Ads::all();
-});
+// Route::get('/ads', function (Request $request) {
+//     return Ads::all();
+// });
 
 
-Route::get('ad/{id}', function( Request $request,$id){
-    return Ads::findOrFail($id);
-});
+// Route::get('ad/{id}', function( Request $request, $id){
+//     return Ads::findOrFail($id);
+// });
+
+Route::apiResource('/ads', 'App\Http\Controllers\Api\AddsController')->only('index');
+Route::apiResource('/ad', 'App\Http\Controllers\Api\AddsController')->only('show');
+
+//  Route::apiResource('/ads', 'App\Http\Controllers\Api\AddsController',)->only(['index','show']);

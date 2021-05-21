@@ -21,7 +21,7 @@ export default {
 
     created() {
         this.loading = true;
-        setTimeout(() => {
+
             this.abouts = [
                 {
                     title: "this is about title"
@@ -31,7 +31,7 @@ export default {
                 }
             ];
             this.loading = false;
-        }, 2000);
+
     },
     mounted() {
         console.log("About component mounted.");

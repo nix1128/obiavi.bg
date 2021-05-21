@@ -1,7 +1,7 @@
 import router from "./routes";
 import VueRouter from "vue-router";
 import Vue from "vue";
-import Index from "./components/index.vue";
+import Index from "./index.vue";
 
 // require("./bootstrap");
 
@@ -15,27 +15,5 @@ const app = new Vue({
         index: Index
     },
 
-    // beforeCreate() {
-    //     console.log("before create");
-    // },
 
-    // created() {
-    //     console.log("created");
-    // },
-
-    // beforeMount() {
-    //     console.log("before Mount");
-    // },
-
-    // mounted() {
-    //     console.log("Mounted");
-    // },
-
-    // beforeDestroy() {
-    //     console.log("before destroy");
-    // },
-
-    // destroyed() {
-    //     console.log("destroyed");
-    // }
 });

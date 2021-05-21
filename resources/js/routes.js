@@ -1,7 +1,8 @@
-import Home from "./components/Home.vue";
-import About from "./components/About.vue";
+import Home from "./HomeComponent/Home.vue";
+import About from "./AboutComponent/About.vue";
 import VueRouter from "vue-router";
-import Lists from "./components/Listings/Lists.vue"
+import Adds from "./AddsComponent/AddsList.vue"
+import SingleAdd from './SingleAddComponent/SingleAdd.vue'
 
 const routes = [
         {
@@ -17,10 +18,18 @@ const routes = [
         },
 
         {
-            path: "/lists",
-            component: Lists,
-            name: "lists"
+            path: "/ads",
+            component: Adds,
+            name: "ads"
         },
+
+        {
+            path: "/ad/:id",
+            component: SingleAdd,
+            name: "ad"
+        }
+
+
 
     ],
 
