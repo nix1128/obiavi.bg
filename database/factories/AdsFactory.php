@@ -19,7 +19,7 @@ class AdsFactory extends Factory
 
 
 
-    public function definition($suffix = ['Vila','Hause','Book','Bicycle','Rooms','View','Car'])
+    public function definition($suffix = ['Vila', 'Hause', 'Book', 'Bicycle', 'Rooms', 'View', 'Car'])
 
     {
         return [

@@ -3,6 +3,7 @@ import About from "./AboutComponent/About.vue";
 import VueRouter from "vue-router";
 import Adds from "./AddsComponent/AddsList.vue"
 import SingleAdd from './SingleAddComponent/SingleAdd.vue'
+import Review from './SingleAddComponent/Review.vue'
 
 const routes = [
         {
@@ -27,7 +28,9 @@ const routes = [
             path: "/ad/:id",
             component: SingleAdd,
             name: "ad"
-        }
+        },
+
+
 
 
 
