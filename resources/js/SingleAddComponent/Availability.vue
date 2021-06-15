@@ -43,19 +43,20 @@
 
                 <v-validation :errors="errorFor('to')"></v-validation>
             </div>
-        </div>
-        <br />
-        <button
-            class="btn btn-secondary btn-block"
-            @click="check"
-            :disabled="loading"
-        >
-            <span v-if="!loading">Check!</span>
 
-            <span v-if="loading">
-                <i class="fas fa-spinner">Checking...</i>
-            </span>
-        </button>
+            <br />
+            <button
+                class="btn btn-secondary btn-block"
+                @click="check"
+                :disabled="loading"
+            >
+                <span v-if="!loading">Check!</span>
+
+                <span v-if="loading">
+                    <i class="fas fa-circle-notch fa-spin"></i> Checking...
+                </span>
+            </button>
+        </div>
     </div>
 </template>
 
@@ -79,18 +80,13 @@ export default {
 
     methods: {
         check() {
-
-
-            //dispatch the action to appear in input fields
+            this.loading = true;
+            this.errors = null;
+            //dispatch the action to appear in input fields from store.js
             this.$store.dispatch("manageStateMutation", {
                 from: this.from,
                 to: this.to
             });
-
-
-  this.loading = true;
-            this.errors = null;
-
 
             const request = axios.get(
                 `/api/ad/${this.adId}/availability?from=${this.from}&to=${this.to}`
@@ -102,10 +98,12 @@ export default {
                 .catch(error => {
                     if (is422(error)) {
                         this.errors = error.response.data.errors;
+
                     }
                     this.status = error.response.status;
+                      this.loading = false;
                 })
-                .then((this.loading = false));
+
         },
 
         errorFor(field) {
