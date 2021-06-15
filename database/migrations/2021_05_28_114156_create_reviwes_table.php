@@ -20,7 +20,7 @@ class CreateReviwesTable extends Migration
 
             $table->unsignedBigInteger('ads_id')->index();
             $table->foreign('ads_id')->references('id')->on('Ads');
-            $table->unsignedBigInteger('addetails_id')->index()->nullable();
+             $table->unsignedBigInteger('addetails_id')->index()->nullable();
             $table->foreign('addetails_id')->references('id')->on('Ads');
             $table->timestamps();
 

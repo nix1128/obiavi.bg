@@ -10,18 +10,22 @@ class Ads extends Model
 {
     use HasFactory;
 
-    function addetails(){
-       return  $this->hasMany(AdDetails::class);
+    function addetails()
+    {
+        return  $this->hasMany(AdDetails::class);
     }
 
-    function reviews(){
+    function reviews()
+    {
         return  $this->hasMany(Reviews::class);
-     }
+    }
 
+    // qry scope
     function availableFor($from, $to): bool
     {
 
-        return 0 === $this->addetails()->betweenDates($from ,$to)->count();
 
+        // to all in the list from addtetails() add betwwen dates from AdDetails
+        return 0 === $this->addetails()->betweenDates($from, $to)->count();
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reviews extends Model
 {
     use HasFactory;
+    protected $fillable = ['id','content','rating'];
 
     function ads()
     {
@@ -24,6 +25,7 @@ class Reviews extends Model
 
     function getIncrementing()
     {
+        //implementing UUID string as PK for this table
         return false; // get the value wheter the ID is incrementing
     }
 

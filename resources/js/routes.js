@@ -3,7 +3,7 @@ import About from "./AboutComponent/About.vue";
 import VueRouter from "vue-router";
 import Adds from "./AddsComponent/AddsList.vue"
 import SingleAdd from './SingleAddComponent/SingleAdd.vue'
-import Review from './SingleAddComponent/Review.vue'
+import Review from "./ReviewsComponent/ReviewsPage.vue"
 
 const routes = [
         {
@@ -30,6 +30,12 @@ const routes = [
             name: "ad"
         },
 
+
+        {
+            path: "/review/:id",
+            component: Review,
+            name: "review"
+        },
 
 
 

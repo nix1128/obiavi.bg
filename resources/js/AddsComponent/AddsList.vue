@@ -1,9 +1,9 @@
 <template>
-    <div class = "container" v-if="loading"><p>Loading...</p></div>
+    <div class = "container" v-if="loading"><spiner></spiner></div>
     <div v-else>
         <div v-if="adds != null">
             <adds-child-component
-v-for="(add, index) in adds" :key="index"
+              v-for="(add, index) in adds" :key="index"
 
                 :adds-title="add.title"
                 :adds-content="add.content"
@@ -21,6 +21,7 @@ import axios from 'axios';
 import AddsChildComponent from './AddsChildComponent';
 
 
+
 export default {
     components: {
       AddsChildComponent
@@ -28,10 +29,12 @@ export default {
 
     },
 
-    data() {
+
+         data() {
         return {
 
             loading: false,
+            adds : null,
 
         };
     },

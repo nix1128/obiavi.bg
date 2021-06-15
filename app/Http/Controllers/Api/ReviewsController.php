@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ReviewsIndexResource;
+
 use App\Models\Ads;
+
 use Illuminate\Http\Request;
+
+
 
 class ReviewsController extends Controller
 {
@@ -15,9 +19,12 @@ class ReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke($id, Request $request)
+    public function __invoke($id)
     {
         $ads = Ads::findOrFail($id);
         return  ReviewsIndexResource::collection($ads->reviews()->latest()->get());
+        //reviews() from Ads
     }
+
+
 }

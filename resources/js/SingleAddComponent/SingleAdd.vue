@@ -2,7 +2,7 @@
     <div>
         <div class="container d-flex flex-row mw-100">
             <div class="card ">
-                <review :ad-id ="this.$route.params.id"/>
+                <review-list :ad-id="this.$route.params.id" />
             </div>
             <div class="col-md-6 mx-auto">
                 <div class="card ">
@@ -25,20 +25,22 @@
             </div>
 
             <div class="col-md-3 pb-4 ">
-                <availability :ad-id ="this.$route.params.id" />
+                <availability :ad-id="this.$route.params.id" />
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import Review from "./Review";
+import ReviewList from "../ReviewsComponent/ReviewList"
 import Availability from "./Availability";
 import axios from "axios";
+
 export default {
     components: {
         Availability,
-        Review
+        ReviewList
+
     },
     data() {
         return {

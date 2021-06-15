@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="loading"><p>Page is loading...</p></div>
+        <div  v-if="loading"><spiner></spiner></div>
         <div v-else>
             <div v-for="(about, index) in abouts" :key="index">
                 <h1>{{ about.title }}</h1>
