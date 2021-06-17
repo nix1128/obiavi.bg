@@ -10,6 +10,8 @@ import Spiner from "./shared/Spiner/Spiner.vue";
 import PortalVue from "portal-vue";
 import Vuex from "vuex";
 import storeState from "./store";
+import checkButton from './shared/components/Buttons/AvailabilityCheckButton.vue';
+import BootstrapVue from "bootstrap-vue";
 
 // require("./bootstrap");
 
@@ -17,7 +19,8 @@ import storeState from "./store";
 Vue.component("stars-rating", Stars), Vue.component("fatal-error", fatalError);
 Vue.component("v-validation", Validations);
 Vue.component("spiner", Spiner);
-import BootstrapVue from "bootstrap-vue";
+Vue.component('checkButton', checkButton);
+
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);

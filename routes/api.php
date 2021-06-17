@@ -28,6 +28,8 @@ Route::get('/ad/{id}/availability', 'App\Http\Controllers\Api\AvailabilityContro
 Route::get('/ad/{id}/reviews', 'App\Http\Controllers\Api\ReviewsController')
     ->name('reviews.show');
 
+    Route::get('ad/{id}/price','App\Http\Controllers\Api\PriceSetController')->name('price.set.show');
+
 Route::apiResource('review', "App\Http\Controllers\Api\ReviewPageController")->only('show','store');
 
 Route::get('ad-details-id/{reveiewKey}', "App\Http\Controllers\Api\ReviewKeyCheckController")->name('ad-details.show');

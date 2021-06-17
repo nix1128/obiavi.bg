@@ -14,14 +14,14 @@
             @click="$emit('add:star', + star + fullStar)"
 
         ></i>
-        <!-- emits to Leave review page -->
+        <!-- emits to ReviwesPage page -->
     </div>
 </template>
 
 <script>
 export default {
     props: {
-        rating: Number //pased from ReviwesPage & Reviews List
+        rating: Number //pased to ReviwesPage & Reviews List
     },
     data() {
         return {};

@@ -45,18 +45,12 @@
             </div>
 
             <br />
-            <button
-                class="btn btn-secondary btn-block"
-                @click="check"
-                :disabled="loading"
-            >
-                <span v-if="!loading">Check!</span>
 
-                <span v-if="loading">
-                    <i class="fas fa-circle-notch fa-spin"></i> Checking...
-                </span>
-            </button>
-        </div>
+         <check-button class ="btn btn-block"
+
+         :loading ="loading" >Check</check-button>
+
+    </div>
     </div>
 </template>
 
@@ -64,7 +58,10 @@
 import { is422 } from "../shared/components/validations/Errors";
 import axios from "axios";
 
+
 export default {
+
+
     props: {
         adId: [String, Number]
     },
