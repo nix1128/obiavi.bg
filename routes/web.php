@@ -17,3 +17,7 @@ Route::get('/{any?}', function () {
     return view('welcome');
 })->where('any', '^(?!api\/)[\/\w\.\,-]*');
 //show any path and the string after it, if "api/" doesnt exist
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
