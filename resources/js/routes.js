@@ -1,11 +1,11 @@
 import Home from "./HomeComponent/Home.vue";
 import About from "./AboutComponent/About.vue";
 import VueRouter from "vue-router";
-import Adds from "./AddsComponent/AddsList.vue"
-import SingleAdd from './SingleAddComponent/SingleAdd.vue'
-import Review from "./ReviewsComponent/ReviewsPage.vue"
-import Price from './shared/components/PriceComponent/Price.vue'
-
+import Adds from "./AddsComponent/AddsList.vue";
+import SingleAdd from "./SingleAddComponent/SingleAdd.vue";
+import Review from "./ReviewsComponent/ReviewsPage.vue";
+import Cart from './CartComponent/Cart.vue'
+import Login from './auth/Login.vue'
 
 const routes = [
         {
@@ -32,7 +32,6 @@ const routes = [
             name: "ad"
         },
 
-
         {
             path: "/review/:id",
             component: Review,
@@ -40,20 +39,20 @@ const routes = [
         },
 
         {
-            path:"/price/:id",
-            component:Price,
-            name:"price"
-
+            path: "/cart",
+            component: Cart,
+            name: "cart"
         },
 
 
-
-
+        {
+            path: "/auth/login",
+            component: Login,
+            name: "login"
+        },
 
 
     ],
-
-
     router = new VueRouter({
         routes, // short for `routes: routes`
         mode: "history"

@@ -1,59 +1,45 @@
 <template>
-    <div class = "container" v-if="loading"><spiner></spiner></div>
+    <div class="container" v-if="loading"><spiner></spiner></div>
     <div v-else>
         <div v-if="adds != null">
             <adds-child-component
-              v-for="(add, index) in adds" :key="index"
-
+                v-for="(add, index) in adds"
+                :key="index"
                 :adds-title="add.title"
                 :adds-content="add.content"
                 :price="add.price"
-                :id ="add.id"
-
-
+                :id="add.id"
             />
         </div>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
-import AddsChildComponent from './AddsChildComponent';
-
-
+import axios from "axios";
+import AddsChildComponent from "./AddsChildComponent";
 
 export default {
     components: {
-      AddsChildComponent
-
-
+        AddsChildComponent
     },
 
-
-         data() {
+    data() {
         return {
-
             loading: false,
-            adds : null,
-
+            adds: null
         };
     },
 
     created() {
+        this.loading = true;
+        const request = axios.get("api/ads");
 
-this.loading = true;
-    const request = axios.get('api/ads')
-
-    request.then(response=>{
-        this.adds = response.data.data;
-        this.loading = false;
-    })
-     }
-
-
- };
+        request.then(response => {
+            this.adds = response.data.data;
+            this.loading = false;
+        });
+    }
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -44,13 +44,14 @@
                 <v-validation :errors="errorFor('to')"></v-validation>
             </div>
 
-            <br />
 
-         <check-button class ="btn btn-block"
+        </div>
 
-         :loading ="loading" >Check</check-button>
 
-    </div>
+
+            <check-button class=" btn-block" :loading="loading"
+                >Check</check-button
+            >
     </div>
 </template>
 
@@ -58,17 +59,14 @@
 import { is422 } from "../shared/components/validations/Errors";
 import axios from "axios";
 
-
 export default {
-
-
     props: {
         adId: [String, Number]
     },
     data() {
         return {
-            from: this.$store.state.manageState.from,
-            to: this.$store.state.manageState.to,
+            from: this.$store.state.lastSearchState.from,
+            to: this.$store.state.lastSearchState.to,
             loading: false,
             status: null,
             errors: null
@@ -76,7 +74,7 @@ export default {
     },
 
     methods: {
-        check() {
+        async check() {
             this.loading = true;
             this.errors = null;
             //dispatch the action to appear in input fields from store.js
@@ -85,21 +83,26 @@ export default {
                 to: this.to
             });
 
-            const request = axios.get(
-                `/api/ad/${this.adId}/availability?from=${this.from}&to=${this.to}`
-            );
-            request
-                .then(response => {
-                    this.status = response.status;
-                })
-                .catch(error => {
-                    if (is422(error)) {
-                        this.errors = error.response.data.errors;
+            try {
+                this.status = (
+                    await axios.get(
+                        `/api/ad/${this.adId}/availability?from=${this.from}&to=${this.to}`
+                    )
+                ).status;
 
-                    }
-                    this.status = error.response.status;
-                      this.loading = false;
-                })
+
+                 this.$emit('availability' ,this.hasAvailability)//to single add
+            } catch (error) {
+                if (is422(error)) {
+                    this.errors = error.response.data.errors;
+                }
+
+                this.status = error.response.status;
+                this.$emit('availability' ,this.hasAvailability)//to single add
+            }
+
+            this.loading = false;
+
 
         },
 

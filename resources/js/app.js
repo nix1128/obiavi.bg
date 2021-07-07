@@ -12,6 +12,8 @@ import Vuex from "vuex";
 import storeState from "./store";
 import checkButton from './shared/components/Buttons/AvailabilityCheckButton.vue';
 import BootstrapVue from "bootstrap-vue";
+import axios from "axios";
+
 
 // require("./bootstrap");
 
@@ -20,6 +22,7 @@ Vue.component("stars-rating", Stars), Vue.component("fatal-error", fatalError);
 Vue.component("v-validation", Validations);
 Vue.component("spiner", Spiner);
 Vue.component('checkButton', checkButton);
+
 
 
 Vue.use(BootstrapVue);
@@ -40,7 +43,14 @@ const app = new Vue({
         index: Index
     },
 
-    beforeCreate() {
+     async beforeCreate() {
         this.$store.dispatch("loadLastState");
+
+        // await axios.get('/sanctum/csrf-cookie');
+        // await axios.post(' /login', {
+        //     email:'larkin.summer@example.com',
+        //     password: 'password',
+        // }),
+
     }
 });

@@ -1,7 +1,7 @@
 <template>
     <div>
-        <button class=" btn btn-secondary btn-block "
-
+        <button
+           type="button" class="btn btn-primary btn-block"
             @click="$parent.check"
             :disabled="loading"
         >
