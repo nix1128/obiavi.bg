@@ -1,3 +1,6 @@
+import axios from "axios";
+import { isLoggedIn, logOut } from "./shared/utils/userState";
+
 export default {
     state: {
         lastSearchState: {
@@ -9,7 +12,7 @@ export default {
             items: []
         },
 
-        isLogedin: false,
+        isLoggedIn: false,
 
         user: {}
     },
@@ -25,13 +28,20 @@ export default {
             state.cart.items = state.cart.items.filter(
                 item => item.ads.id !== result
             );
-        }
+        },
 
         //setCart sets all the items
         // setCart(state , payload){
         //     state.cart = payload;
 
         // }
+
+        setUser(state, payload) {
+            state.user = payload;
+        },
+        setLoggedIn(state, payload) {
+            state.isLoggedIn = payload;
+        }
     },
 
     actions: {
@@ -50,6 +60,8 @@ export default {
             if (cart) {
                 context.commit("setCart", JSON.parse(cart));
             }
+
+            // context.commit("setLoggedIn", isLoggedIn());
         },
 
         addToCart(context, result) {
@@ -61,6 +73,23 @@ export default {
         removeFromCart() {
             context.commit("removeFromCart", result);
             localStorage.setItem("cart", JSON.stringify(result));
+        },
+
+        async loadUser({ commit, dispatch }) {
+            if (isLoggedIn()) {
+                try {
+                    const user = (await axios.get("/user")).data;
+                    commit("setUser", user);
+                    commit("setLoggedIn", true);
+                } catch (error) {
+                    dispatch("logout");
+                }
+            }
+        },
+        logout({ commit }) {
+            commit("setUser", {});
+            commit("setLoggedIn", false);
+            logOut();
         }
     },
 

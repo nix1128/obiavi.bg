@@ -12,12 +12,10 @@ import Vuex from "vuex";
 import storeState from "./store";
 import checkButton from './shared/components/Buttons/AvailabilityCheckButton.vue';
 import BootstrapVue from "bootstrap-vue";
-import axios from "axios";
 
 
-// require("./bootstrap");
 
-// window.Vue = require("vue").default;
+
 Vue.component("stars-rating", Stars), Vue.component("fatal-error", fatalError);
 Vue.component("v-validation", Validations);
 Vue.component("spiner", Spiner);
@@ -34,6 +32,21 @@ Vue.filter("timeFilter", value => Moment(value).format("ll"));
 
 const store = new Vuex.Store(storeState);
 
+//procverka na greska ot 401 ako usera ne e authenticated
+window.axios.interceptors.response.use(
+
+    response => {
+        return response
+    },
+   error => {
+       if(401 == store.response.status){
+           $store.dispatch("logout");
+       }
+
+       return Promise.reject(error)
+   }
+);
+
 const app = new Vue({
     el: "#app",
     router,
@@ -45,12 +58,9 @@ const app = new Vue({
 
      async beforeCreate() {
         this.$store.dispatch("loadLastState");
+        this.$store.dispatch("loadUser");
 
-        // await axios.get('/sanctum/csrf-cookie');
-        // await axios.post(' /login', {
-        //     email:'larkin.summer@example.com',
-        //     password: 'password',
-        // }),
+    },
 
-    }
+
 });

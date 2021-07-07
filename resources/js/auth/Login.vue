@@ -66,6 +66,7 @@
 <script>
 import axios from "axios";
 import validationErrors from "../shared/mixins/validationErrors";
+import {logIn} from "../shared/utils/userState"
 
 export default {
     mixins: [validationErrors],
@@ -78,25 +79,25 @@ export default {
         };
     },
 
-    methods: {
-        async load() {
-            this.loading = true;
-            this.errors = null;
-
-            try {
-                await axios.get("/sanctum/csrf-cookie");
-                await axios.post("/login", {
-                    email: this.email,
-                    password: this.password
-                });
-                this.loading = false;
-            } catch (error) {
-                this.errors = error.response && error.response.data.errors;
-            }
-            await axios.get("/user");
-
-        }
+   methods: {
+    async load() {
+      this.loading = true;
+      this.errors = null;
+      try {
+        await axios.get("/sanctum/csrf-cookie");
+        await axios.post("/login", {
+          email: this.email,
+          password: this.password
+        });
+        logIn();
+        this.$store.dispatch("loadUser");
+        this.$router.push({ name: "home" });
+      } catch (error) {
+        this.errors = error.response && error.response.data.errors;
+      }
+      this.loading = false;
     }
+  }
 };
 </script>
 
